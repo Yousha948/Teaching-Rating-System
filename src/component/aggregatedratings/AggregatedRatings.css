@@ -1,0 +1,34 @@
+/* Aggregated Ratings Styles */
+.aggregated-ratings-container {
+    padding: 20px;
+    background: #ffffff;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .aggregated-ratings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .aggregated-ratings-table th, .aggregated-ratings-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .aggregated-ratings-table th {
+    background: #f0f4f8;
+    font-weight: bold;
+  }
+  
+  .aggregated-ratings-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .aggregated-ratings-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  

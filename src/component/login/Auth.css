@@ -1,0 +1,43 @@
+/* Authentication Page Styles */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f5f7fa;
+  }
+  
+  .auth-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+  }
+  
+  .input-box {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #42a5f5;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .signup-link, .forgot-pass-link {
+    color: #3a77f3;
+    text-decoration: none;
+  }
+  

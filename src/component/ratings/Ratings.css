@@ -1,0 +1,49 @@
+/* Ratings Styles */
+.ratings-container {
+    padding: 20px;
+    background: #ffffff;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ratings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .ratings-table th, .ratings-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .ratings-table th {
+    background: #f0f4f8;
+    font-weight: bold;
+  }
+  
+  .rating-form {
+    margin-top: 20px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .rating-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .rating-form input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .rating-form button {
+    margin-top: 10px;
+  }
+  
