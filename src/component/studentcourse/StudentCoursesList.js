@@ -35,7 +35,7 @@ function StudentCoursesList() {
 
   return (
     <div className="student-courses-container">
-      <h1>Student Courses</h1>
+      <h1>Student Courses...</h1>
       <button onClick={() => setSelectedStudentCourse({})}>Add New</button>
       <table className="student-courses-table">
         <thead>
