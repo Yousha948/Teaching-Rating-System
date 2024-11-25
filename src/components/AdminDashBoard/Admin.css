@@ -1,0 +1,39 @@
+/* Admin Dashboard Styles */
+
+.admin-container {
+    padding: 20px;
+    background: #8B2C2C; /* Lighter red background */
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #F8F8F8; /* Light text color */
+  }
+  
+  .admin-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .admin-option {
+    display: block;
+    padding: 10px;
+    font-size: 18px;
+    color: #FFD700; /* Gold color for the links */
+    background-color: #B03B3B; /* Dark red background */
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .admin-option:hover {
+    background-color: #944848; /* Slightly darker red on hover */
+    color: #FFFFFF; /* White text on hover */
+  }
+  
+  .admin-option:active {
+    background-color: #FF6347; /* Active button with coral color */
+  }
+  

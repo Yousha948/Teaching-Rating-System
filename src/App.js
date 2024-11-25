@@ -11,6 +11,9 @@ import StudentsList from './components/Students/StudentsList';
 import StudentCoursesList from './components/StudentCourse/StudentCourseList';
 import RatingsList from './components/Ratings/RatingsList';
 import DepartmentsList from './components/Departments/DepartmentList';
+import CoursesList from './components/Courses/CoursesList';
+import CourseTeachersList from './components/CourseTeacher/CourseTeachersList';
+import AdminDashboard from './components/AdminDashBoard/AdminDashboard';
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
         <Route path='/studentcourses' element={<StudentCoursesList/>}/>
         <Route path='/ratings' element={<RatingsList/>}/>
         <Route path='/departments' element={<DepartmentsList/>}/>
+        <Route path='/courses' element={<CoursesList/>}/>
+        <Route path='/courseteacher' element={<CourseTeachersList/>}/>
+        <Route path='/admin' element={<AdminDashboard/>}/>
       </Routes>
     </Router>
   );

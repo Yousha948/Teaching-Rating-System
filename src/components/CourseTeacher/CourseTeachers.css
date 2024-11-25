@@ -1,0 +1,76 @@
+/* Course Teachers Page Styles */
+
+.course-teachers-container {
+    padding: 20px;
+    background: #8B2C2C; /* Lighter red background */
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #F8F8F8;
+  }
+  
+  .course-teachers-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .course-teachers-table th,
+  .course-teachers-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #B03B3B;
+  }
+  
+  .course-teachers-table th {
+    background: #B03B3B;
+    color: #FFD700;
+    font-weight: bold;
+  }
+  
+  .course-teachers-table tr:nth-child(even) {
+    background-color: #A33B3B;
+  }
+  
+  .course-teachers-table tr:hover {
+    background-color: #944848;
+  }
+  
+  .course-teacher-form {
+    margin-top: 20px;
+    background: #8B2C2C;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: #F8F8F8;
+  }
+  
+  .course-teacher-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .course-teacher-form input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #B03B3B;
+    border-radius: 5px;
+    background-color: #FFD700;
+    color: #000000;
+  }
+  
+  .course-teacher-form button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #FFA07A;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FFFFFF;
+    transition: background-color 0.3s;
+  }
+  
+  .course-teacher-form button:hover {
+    background-color: #FF6347;
+  }
+  
