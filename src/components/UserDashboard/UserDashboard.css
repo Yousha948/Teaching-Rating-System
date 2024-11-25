@@ -1,0 +1,54 @@
+/* UserDashboard.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #B03B3B; /* Matching dark red background */
+    color: #F8F8F8; /* Light color for text */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .dashboard-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #F8F8F8; /* Light color for the title */
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .dashboard-card {
+    background: #8B2C2C; /* A slightly lighter shade of the theme color */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .dashboard-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #FFD700; /* Gold color for headings */
+  }
+  
+  .dashboard-card p {
+    font-size: 1rem;
+    color: #F8F8F8;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  

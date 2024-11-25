@@ -1,0 +1,40 @@
+/* Users Page Styles */
+.users-container {
+    padding: 20px;
+    background: #8B2C2C; /* Matching lighter red background for the container */
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #F8F8F8; /* Light color for text */
+    width: 50vw;
+    height: 50vw;;
+  }
+  
+  .users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .users-table th,
+  .users-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #B03B3B; /* Dark red border to match theme */
+    color: #F8F8F8; /* Light text color */
+  }
+  
+  .users-table th {
+    background: #B03B3B; /* Dark red background for the table header */
+    color: #FFD700; /* Gold color for header text */
+    font-weight: bold;
+  }
+  
+  .users-table tr:nth-child(even) {
+    background-color: #A33B3B; /* Alternating row color with a lighter red */
+  }
+  
+  .users-table tr:hover {
+    background-color: #944848; /* Slight hover effect with darker red */
+  }
+  
