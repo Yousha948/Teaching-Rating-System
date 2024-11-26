@@ -1,4 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import {
+  Container,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from '@mui/material';
 import './Ratings.css';
 
 function RatingsList() {
@@ -9,6 +26,7 @@ function RatingsList() {
     teacherName: '',
     ratingValue: '',
   });
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchRatings();
@@ -31,14 +49,15 @@ function RatingsList() {
       teacherName: rating.teacherName,
       ratingValue: rating.ratingValue,
     });
+    setOpen(true);
   };
 
   const handleDelete = async (id) => {
     try {
       await fetch(`/api/ratings/${id}`, {
-        method: 'DELETE', // Using DELETE method
+        method: 'DELETE',
       });
-      fetchRatings(); // Re-fetch the list after deletion
+      fetchRatings();
     } catch (error) {
       console.error('Error deleting rating:', error);
     }
@@ -53,7 +72,7 @@ function RatingsList() {
     e.preventDefault();
     try {
       if (selectedRating && selectedRating.id) {
-        // Using fetch with PUT method to update a rating
+        // Update existing rating
         await fetch(`/api/ratings/${selectedRating.id}`, {
           method: 'PUT',
           headers: {
@@ -62,7 +81,7 @@ function RatingsList() {
           body: JSON.stringify(formData),
         });
       } else {
-        // Using fetch with POST method to create a new rating
+        // Create new rating
         await fetch('/api/ratings', {
           method: 'POST',
           headers: {
@@ -72,77 +91,123 @@ function RatingsList() {
         });
       }
       fetchRatings();
-      setSelectedRating(null); // Reset after saving
+      handleClose();
     } catch (error) {
       console.error('Error saving rating:', error);
     }
   };
 
-  return (
-    <div className="ratings-container">
-      <h1>Ratings</h1>
-      <button onClick={() => setSelectedRating({})}>Add New Rating</button>
-      <table className="ratings-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Course</th>
-            <th>Teacher</th>
-            <th>Rating</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ratings.map((rating) => (
-            <tr key={rating.id}>
-              <td>{rating.id}</td>
-              <td>{rating.courseName}</td>
-              <td>{rating.teacherName}</td>
-              <td>{rating.ratingValue}</td>
-              <td>
-                <button onClick={() => handleEdit(rating)}>Edit</button>
-                <button onClick={() => handleDelete(rating.id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  const handleOpen = () => {
+    setSelectedRating(null);
+    setFormData({ courseName: '', teacherName: '', ratingValue: '' });
+    setOpen(true);
+  };
 
-      {/* Form for adding/editing ratings */}
-      <div className="rating-form">
-        <h2>{selectedRating && selectedRating.id ? 'Edit Rating' : 'Add New Rating'}</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="courseName"
-            value={formData.courseName}
-            onChange={handleInputChange}
-            placeholder="Course Name"
-            required
-          />
-          <input
-            type="text"
-            name="teacherName"
-            value={formData.teacherName}
-            onChange={handleInputChange}
-            placeholder="Teacher Name"
-            required
-          />
-          <input
-            type="number"
-            name="ratingValue"
-            value={formData.ratingValue}
-            onChange={handleInputChange}
-            placeholder="Rating (1-5)"
-            required
-            min="1"
-            max="5"
-          />
-          <button type="submit">Save</button>
-          <button type="button" onClick={() => setSelectedRating(null)}>Cancel</button>
-        </form>
-      </div>
-    </div>
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedRating(null);
+  };
+
+  return (
+    <Container maxWidth="md" className="ratings-container">
+      <Typography variant="h4" gutterBottom>
+        Ratings
+      </Typography>
+      <Button variant="contained" color="primary" onClick={handleOpen} style={{ marginBottom: '20px' }}>
+        Add New Rating
+      </Button>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Course</TableCell>
+              <TableCell>Teacher</TableCell>
+              <TableCell>Rating</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {ratings.map((rating) => (
+              <TableRow key={rating.id}>
+                <TableCell>{rating.id}</TableCell>
+                <TableCell>{rating.courseName}</TableCell>
+                <TableCell>{rating.teacherName}</TableCell>
+                <TableCell>{rating.ratingValue}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => handleEdit(rating)}
+                    style={{ marginRight: '10px' }}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={() => handleDelete(rating.id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      {/* Dialog for Adding/Editing Ratings */}
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>{selectedRating ? 'Edit Rating' : 'Add New Rating'}</DialogTitle>
+        <DialogContent>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              margin="dense"
+              label="Course Name"
+              type="text"
+              fullWidth
+              variant="outlined"
+              name="courseName"
+              value={formData.courseName}
+              onChange={handleInputChange}
+              required
+            />
+            <TextField
+              margin="dense"
+              label="Teacher Name"
+              type="text"
+              fullWidth
+              variant="outlined"
+              name="teacherName"
+              value={formData.teacherName}
+              onChange={handleInputChange}
+              required
+            />
+            <TextField
+              margin="dense"
+              label="Rating (1-5)"
+              type="number"
+              fullWidth
+              variant="outlined"
+              name="ratingValue"
+              value={formData.ratingValue}
+              onChange={handleInputChange}
+              required
+              inputProps={{ min: 1, max: 5 }}
+            />
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="default">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Container>
   );
 }
 

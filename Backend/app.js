@@ -1,29 +1,18 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const db = require('./config/db'); // Database configuration
-const userRoutes = require('./routes/userRoutes');
-const departmentRoutes = require('./routes/departmentRoutes');
-const courseRoutes = require('./routes/courseRoutes');
-const teacherRoutes = require('./routes/teacherRoutes');
-const studentRoutes = require('./routes/studentRoutes');
-const ratingRoutes = require('./routes/ratingRoutes');
-const notificationRoutes = require('./routes/notificationRoutes');
-
+import express from 'express';
+import db from './Config/db.js'
+import cors from 'cors'
+import UserRoutes from './Routes/UserRoutes.js'
 const app = express();
-const PORT = 3306;
+const PORT = 5000;
 
-app.use(bodyParser.json());
+// Middleware
+app.use(express.json());
+app.use(cors())
 
 // Routes
-app.use('/api/users', userRoutes);
-app.use('/api/departments', departmentRoutes);
-app.use('/api/courses', courseRoutes);
-app.use('/api/teachers', teacherRoutes);
-app.use('/api/students', studentRoutes);
-app.use('/api/ratings', ratingRoutes);
-app.use('/api/notifications', notificationRoutes);
+app.use('/api/users', UserRoutes);
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${3306}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

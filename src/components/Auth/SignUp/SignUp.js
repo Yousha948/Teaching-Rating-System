@@ -12,6 +12,7 @@ export default function SignUp () {
     phoneNumber: '',
     role: '',
     id: '', // New field for ID
+    password: '', // New field for password
   });
 
   // Function to handle form data changes
@@ -32,10 +33,48 @@ export default function SignUp () {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
-    // Here you can add form validation or send data to your server
+    
+    // Prepare the form data to be sent to the backend
+    const requestData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      birthday: formData.birthday,
+      gender: formData.gender,
+      email: formData.email,
+      phoneNumber: formData.phoneNumber,
+      role: formData.role,
+      id: formData.id,
+      password: formData.password, // Include the password in the request
+    };
+
+    try {
+      // Sending the form data to the backend (assuming your backend URL is '/api/register')
+      const response = await fetch('http://localhost:5000/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Handle successful registration (e.g., redirect to login or show success message)
+        console.log('User registered successfully:', data);
+        alert('Registration successful!');
+      } else {
+        // Handle error from backend
+        console.error('Error registering user:', data.error);
+        alert('Error registering user: ' + data.error);
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error('Network error:', error);
+      alert('There was an error with the registration. Please try again later.');
+    }
   };
 
   return (
@@ -78,7 +117,7 @@ export default function SignUp () {
                     <div className="col-md-6 mb-4 d-flex align-items-center">
                       <div className="form-outline datepicker w-100">
                         <input
-                          type="text"
+                          type="date"
                           id="birthday"
                           className="form-control form-control-lg"
                           value={formData.birthday}
@@ -185,6 +224,21 @@ export default function SignUp () {
                     </div>
                   </div>
 
+                  <div className="row">
+                    <div className="col-md-6 mb-4 pb-2">
+                      <div className="form-outline">
+                        <input
+                          type="password"
+                          id="password"
+                          className="form-control form-control-lg"
+                          value={formData.password}
+                          onChange={handleChange}
+                        />
+                        <label className="form-label" htmlFor="password">Password</label>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="mt-4 pt-2">
                     <input
                       className="btn btn-primary btn-lg"
@@ -201,5 +255,3 @@ export default function SignUp () {
     </section>
   );
 };
-
-// export default Signup;

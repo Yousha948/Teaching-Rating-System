@@ -13,7 +13,6 @@ function AdminDashboard() {
         <Link to="/teachers" className="admin-option">Manage Teachers</Link>
         <Link to="/students" className="admin-option">Manage Students</Link>
         <Link to="/ratings" className="admin-option">Manage Ratings</Link>
-        <Link to="/notifications" className="admin-option">Notifications</Link>
       </div>
     </div>
   );

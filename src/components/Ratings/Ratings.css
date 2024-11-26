@@ -1,83 +1,146 @@
 /* Ratings Styles */
 
+/* General Body Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #B03B3B; /* Deep red background */
-    color: #F8F8F8; /* Light text color for contrast */
-  }
-  
-  .ratings-container {
-    padding: 20px;
-    background: #8B2C2C; /* Lighter red background for the container */
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    color: #F8F8F8; /* Light text color */
-  }
-  
-  .ratings-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .ratings-table th,
-  .ratings-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #B03B3B; /* Dark red border */
-    color: #F8F8F8; /* Light text color */
-  }
-  
-  .ratings-table th {
-    background: #B03B3B; /* Dark red background for the table header */
-    color: #FFD700; /* Gold color for header text */
-    font-weight: bold;
-  }
-  
-  .ratings-table tr:nth-child(even) {
-    background-color: #A33B3B; /* Alternating row color with a lighter red */
-  }
-  
-  .ratings-table tr:hover {
-    background-color: #944848; /* Slight hover effect with darker red */
-  }
-  
-  .rating-form {
-    margin-top: 20px;
-    background: #8B2C2C; /* Lighter red background for the form */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    color: #F8F8F8; /* Light color for text */
-  }
-  
-  .rating-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .rating-form input {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #B03B3B; /* Dark red border */
-    border-radius: 5px;
-    background-color: #FFD700; /* Gold background for input fields */
-    color: #000000; /* Dark text for readability */
-  }
-  
-  .rating-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #FFA07A; /* Light coral background for button */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #FFFFFF; /* White text on buttons */
-    transition: background-color 0.3s;
-  }
-  
-  .rating-form button:hover {
-    background-color: #FF6347; /* Darker coral for hover effect */
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-color: #B03B3B; /* Deep red background */
+  color: #F8F8F8; /* Light text color for contrast */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container for Ratings Page */
+.ratings-container {
+  padding: 20px;
+  background: #8B2C2C; /* Lighter red background for the container */
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #F8F8F8; /* Light text color */
+  max-width: 800px; /* Constrain width for better alignment */
+  margin-left: auto; /* Center align the container */
+  margin-right: auto;
+  width: 50vw;
+  height: 40vw;
+}
+
+/* Table for Ratings */
+.ratings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.ratings-table th,
+.ratings-table td {
+  padding: 15px; /* Increased padding for better spacing */
+  text-align: left;
+  border-bottom: 1px solid #B03B3B; /* Dark red border */
+  color: #F8F8F8; /* Light text color */
+  font-size: 16px; /* Increased font size for readability */
+}
+
+.ratings-table th {
+  background: #B03B3B; /* Dark red background for the table header */
+  color: #FFD700; /* Gold color for header text */
+  font-weight: bold;
+  text-align: center; /* Center align header text */
+}
+
+.ratings-table tr:nth-child(even) {
+  background-color: #A33B3B; /* Alternating row color with a lighter red */
+}
+
+.ratings-table tr:hover {
+  background-color: #944848; /* Slight hover effect with darker red */
+}
+
+/* Form Container for Adding/Editing Ratings */
+.rating-form {
+  margin-top: 20px;
+  background: #8B2C2C; /* Lighter red background for the form */
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #F8F8F8; /* Light color for text */
+  max-width: 600px; /* Constrain width for better form alignment */
+  margin-left: auto; /* Center align the form container */
+  margin-right: auto;
+}
+
+/* Form Element Styles */
+.rating-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.rating-form input,
+.rating-form select {
+  margin: 12px 0; /* Increased margin for better spacing */
+  padding: 12px;
+  border: 1px solid #B03B3B; /* Dark red border */
+  border-radius: 5px;
+  background-color: #FFD700; /* Gold background for input fields */
+  color: #000000; /* Dark text for readability */
+  font-size: 16px; /* Increased font size for input fields */
+}
+
+/* Button Styles */
+.rating-form button {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #FFA07A; /* Light coral background for button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #FFFFFF; /* White text on buttons */
+  font-size: 16px; /* Increased font size for buttons */
+  transition: background-color 0.3s, transform 0.2s; /* Added a subtle scale effect */
+}
+
+/* Hover Effect for Buttons */
+.rating-form button:hover {
+  background-color: #FF6347; /* Darker coral for hover effect */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Dialog Styles (if needed with MUI) */
+.dialog-container {
+  background-color: #8B2C2C; /* Lighter red for MUI dialog background */
+  color: #F8F8F8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #8B2C2C; /* Scrollbar track in lighter red */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FFD700; /* Scrollbar thumb in gold */
+  border-radius: 10px;
+}
+
+/* Adjusted Typography for Consistency */
+h1, h2 {
+  color: #FFD700; /* Gold for headings */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Additional Spacing for Form Elements */
+.rating-form .MuiTextField-root {
+  margin-bottom: 15px;
+}
+
+/* Button alignment if using MUI buttons */
+.MuiButton-root {
+  margin: 10px 0;
+}
