@@ -16,7 +16,7 @@ function Teachers() {
 
   const fetchTeachers = async () => {
     try {
-      const response = await fetch('/api/teachers'); // Using fetch instead of axios
+      const response = await fetch('http://localhost:5000/api/teachers/createTeacher'); // Using fetch instead of axios
       const data = await response.json();
       setTeachers(data);
     } catch (error) {
@@ -94,8 +94,8 @@ function Teachers() {
         </thead>
         <tbody>
           {teachers.map((teacher) => (
-            <tr key={teacher.id}>
-              <td>{teacher.id}</td>
+            <tr key={teacher.TeacherId}>
+              <td>{teacher.TeacherId}</td>
               <td>{teacher.name}</td>
               <td>{teacher.email}</td>
               <td>{teacher.department}</td>
