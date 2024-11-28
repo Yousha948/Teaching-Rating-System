@@ -1,131 +1,180 @@
-/* Login.css */
-
-body {
+/* General Reset and Font */
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #8B0000;
+  font-family: "Trirong", serif;
+}
+
+/* Gradient Background with Animation */
+body {
+  min-height: 100vh;
+  background: linear-gradient(62deg, #23D5AB, #23A6D5, #E73C7E, #EE7752);
+  animation: gradient 20s ease infinite;
+  background-size: 400% 400%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
+/* Login Container */
 .login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-  width : 500vw;
-}
-
-.login-header {
-  color: #FFFFFF;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-}
-
-.login-form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #8B0000;
-  padding: 2rem;
+  overflow: hidden;
+  background-color: white;
+  padding: 40px 30px 30px 30px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 300ms, box-shadow 300ms;
+  box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
   text-align: center;
 }
 
+/* Waves Animation */
+.login-container::before,
+.login-container::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-top-left-radius: 40%;
+  border-top-right-radius: 45%;
+  border-bottom-left-radius: 35%;
+  border-bottom-right-radius: 40%;
+  z-index: -1;
+}
+
+.login-container::before {
+  left: 40%;
+  bottom: -130%;
+  background-color: rgba(69, 105, 144, 0.15);
+  animation: wawes 6s infinite linear;
+}
+
+.login-container::after {
+  left: 35%;
+  bottom: -125%;
+  background-color: rgba(2, 128, 144, 0.2);
+  animation: wawes 7s infinite;
+}
+
+/* Login Header */
+.login-header {
+  color: rgb(31, 131, 225);
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(24, 63, 98, 0.8);
+}
+
+/* Shop Logo Placeholder */
 .shop-logo {
   margin-bottom: 2rem;
-  /* You can add a shop logo image here */
 }
 
+/* Login Form */
 .login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  background-color: #8B0000;
-  border-radius: 5px;
   width: 100%;
   max-width: 400px;
-}
-
-.login-form h2 {
-  color: #FFFFFF;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.login-form label {
-  color: #FFFFFF;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  text-align: center;
-  display: block;
+  margin: 0 auto; /* Center the form */
 }
 
 .login-form input {
-  width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: none;
+  display: block;
+  font-family: 'Asap', sans-serif;
+  font-size: 16px;
   border-radius: 5px;
-  background-color: #FFD700;
+  background: rgb(240, 243, 246);
+  width: 100%;
+  border: 100;
+  padding: 10px 10px;
+  margin: 15px 0;
   color: #000000;
-  font-size: 1rem;
-  text-align: center;
 }
 
-.remember-me {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.remember-me input {
-  margin-right: 0.5rem;
+.login-form label {
+  color: rgb(31, 131, 225);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  width: 100%;
 }
 
 .login-button {
-  padding: 0.8rem 2rem;
-  background-color: #FFA07A;
-  border: none;
-  border-radius: 5px;
+  font-family: 'Asap', sans-serif;
   cursor: pointer;
-  font-size: 1rem;
-  color: #FFFFFF;
-  transition: background-color 0.3s;
-  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
   width: 100%;
+  border: 0;
+  padding: 12px 0;
+  border-radius: 5px;
+  background-color: rgb(11, 140, 246);
+  transition: background-color 300ms, transform 200ms;
+  margin-top: 10px;
 }
 
 .login-button:hover {
-  background-color: #FF6347;
+  background-color: rgba(244, 91, 105, 1);
+  transform: scale(1.05);
 }
 
+/* Remember Me Section */
+.remember-me {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the content */
+  gap: 0.5rem; /* Add spacing between checkbox and label */
+  margin: 1rem 0; /* Add margin for spacing */
+  color: rgb(0, 140, 255);
+  font-size: 0.9rem;
+}
+
+/* Links and Options */
 .login-options {
   display: flex;
   justify-content: center;
+  flex-direction: column; /* Stack links vertically */
   gap: 1rem;
   width: 100%;
   margin-top: 1rem;
 }
 
 .login-options a {
-  color: #FFD700;
   text-decoration: none;
-  font-size: 0.9rem;
+  color: rgba(211, 222, 214, 0.734);
+  font-size: 0.8rem;
 }
 
 .login-options a:hover {
   text-decoration: underline;
+}
+
+/* Keyframes for Animations */
+@keyframes wawes {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
