@@ -1,89 +1,141 @@
-/* Teachers Page Styles */
-
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #B03B3B; /* Deep red background */
-    color: #F8F8F8; /* Light text color for contrast */
-  }
-  
-  .teachers-container {
-    padding: 20px;
-    background: #8B2C2C; /* Matching lighter red background for the container */
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    color: #F8F8F8; /* Light color for text */
-    width: 50vw;
-  height: 40vw;
-  }
-  
-  .teachers-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .teachers-table th,
-  .teachers-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #B03B3B; /* Dark red border to match theme */
-    color: #F8F8F8; /* Light text color */
-  }
-  
-  .teachers-table th {
-    background: #B03B3B; /* Dark red background for the table header */
-    color: #FFD700; /* Gold color for header text */
-    font-weight: bold;
-  }
-  
-  .teachers-table tr:nth-child(even) {
-    background-color: #A33B3B; /* Alternating row color with a lighter red */
-  }
-  
-  .teachers-table tr:hover {
-    background-color: #944848; /* Slight hover effect with darker red */
-  }
-  
-  .teacher-form {
-    margin-top: 20px;
-    background: #8B2C2C; /* Lighter red background for the form */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    color: #F8F8F8;
-  }
-  
-  .teacher-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .teacher-form input {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #B03B3B; /* Dark red border */
-    border-radius: 5px;
-    background-color: #FFD700; /* Gold background for input fields */
-    color: #000000; /* Dark text for readability */
-  }
-  
-  .teacher-form input::placeholder {
-    color: #333333; /* Darker placeholder text */
-  }
-  
-  .teacher-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #FFA07A; /* Light coral background for button */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #FFFFFF; /* White text on buttons */
-    transition: background-color 0.3s;
-  }
-  
-  .teacher-form button:hover {
-    background-color: #FF6347; /* Darker coral for hover effect */
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-color: #B03B3B; /* Deep red background */
+  color: #F8F8F8; /* Light text color for contrast */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Teachers Container */
+.teachers-container {
+  padding: 20px;
+  background: #8B2C2C; /* Lighter red background for the container */
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #F8F8F8; /* Light color for text */
+  max-width: 90%;
+  width: 800px;
+}
+
+/* Teachers Table */
+.teachers-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.teachers-table th,
+.teachers-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #B03B3B; /* Dark red border to match theme */
+  color: #F8F8F8; /* Light text color */
+}
+
+.teachers-table th {
+  background: #B03B3B; /* Dark red background for the table header */
+  color: #FFD700; /* Gold color for header text */
+  font-weight: bold;
+  text-align: center;
+}
+
+.teachers-table td {
+  text-align: center;
+}
+
+.teachers-table tr:nth-child(even) {
+  background-color: #A33B3B; /* Alternating row color with a lighter red */
+}
+
+.teachers-table tr:hover {
+  background-color: #944848; /* Slight hover effect with darker red */
+}
+
+/* Action Buttons in Table */
+.teachers-table button {
+  padding: 5px 10px;
+  background-color: #FFA07A; /* Light coral background for button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #FFFFFF; /* White text on buttons */
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+.teachers-table button:hover {
+  background-color: #FF6347; /* Darker coral for hover effect */
+}
+
+/* Add/Edit Teacher Form */
+.teacher-form {
+  margin-top: 20px;
+  background: #8B2C2C; /* Lighter red background for the form */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #F8F8F8;
+}
+
+.teacher-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #FFD700; /* Gold heading color */
+}
+
+.teacher-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.teacher-form input,
+.teacher-form select {
+  padding: 10px;
+  border: 1px solid #B03B3B; /* Dark red border */
+  border-radius: 5px;
+  background-color: #FFD700; /* Gold background for input fields */
+  color: #000000; /* Dark text for readability */
+}
+
+.teacher-form input::placeholder {
+  color: #333333; /* Darker placeholder text */
+}
+
+.teacher-form button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #FFA07A; /* Light coral background for button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #FFFFFF; /* White text on buttons */
+  transition: background-color 0.3s;
+}
+
+.teacher-form button:hover {
+  background-color: #FF6347; /* Darker coral for hover effect */
+}
+
+/* Add New Teacher Button */
+.teachers-container button {
+  padding: 10px 20px;
+  background-color: #FFD700; /* Gold background for add button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #000000; /* Dark text for contrast */
+  margin-bottom: 20px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.teachers-container button:hover {
+  background-color: #FFC107; /* Brighter gold for hover effect */
+}

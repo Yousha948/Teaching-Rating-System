@@ -9,10 +9,11 @@ import {
 
 const router = express.Router();
 
-router.post('/', createRating);             // Create a new rating
-router.get('/', getAllRatings);             // Get all ratings
-router.get('/:ratingId', getRatingById);    // Get a specific rating by ID
-router.put('/:ratingId', updateRating);     // Update a rating
-router.delete('/:ratingId', deleteRating);  // Delete a rating
+// Routes for Ratings
+router.post('/ratings', createRating);             // Create a new rating
+router.get('/ratings', getAllRatings);             // Get all ratings
+router.get('/ratings/:ratingId', getRatingById);   // Get a specific rating by ID
+router.put('/ratings/:ratingId', updateRating);    // Update a rating by ID
+router.delete('/ratings/:ratingId', deleteRating); // Delete a rating by ID
 
 export default router;

@@ -87,7 +87,7 @@ const Login = () => {
               <label htmlFor="rememberMe">Remember for 1 month?</label>
             </div>
 
-            <button type="submit" className="login-button" disabled={loading}>
+            <button  onClick={handleLogin} className="login-button" disabled={loading}>
               {loading ? 'Logging in...' : 'Sign In'}
             </button>
           </form>

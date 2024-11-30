@@ -5,8 +5,8 @@ function StudentCoursesList() {
   const [studentCourses, setStudentCourses] = useState([]);
   const [selectedStudentCourse, setSelectedStudentCourse] = useState(null);
   const [formData, setFormData] = useState({
-    studentName: '',
-    courseName: '',
+    studentId: '', // Now using IDs for student and course
+    courseId: '',
   });
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function StudentCoursesList() {
 
   const fetchStudentCourses = async () => {
     try {
-      const response = await fetch('/api/student-courses'); // Using fetch instead of axios
+      const response = await fetch('/api/student-courses'); // Fetching the student-course relationships
       const data = await response.json();
       setStudentCourses(data);
     } catch (error) {
@@ -26,17 +26,17 @@ function StudentCoursesList() {
   const handleEdit = (studentCourse) => {
     setSelectedStudentCourse(studentCourse);
     setFormData({
-      studentName: studentCourse.studentName,
-      courseName: studentCourse.courseName,
+      studentId: studentCourse.studentId, // Assuming studentId and courseId are used
+      courseId: studentCourse.courseId,
     });
   };
 
   const handleDelete = async (id) => {
     try {
       await fetch(`/api/student-courses/${id}`, {
-        method: 'DELETE', // Using DELETE method
+        method: 'DELETE', // Deleting the relationship using DELETE method
       });
-      fetchStudentCourses(); // Re-fetch the list after deletion
+      fetchStudentCourses(); // Re-fetch after deletion
     } catch (error) {
       console.error('Error deleting student course:', error);
     }
@@ -51,7 +51,7 @@ function StudentCoursesList() {
     e.preventDefault();
     try {
       if (selectedStudentCourse && selectedStudentCourse.id) {
-        // Using fetch with PUT method to update a student course
+        // Using PUT method to update the student-course relationship
         await fetch(`/api/student-courses/${selectedStudentCourse.id}`, {
           method: 'PUT',
           headers: {
@@ -60,7 +60,7 @@ function StudentCoursesList() {
           body: JSON.stringify(formData),
         });
       } else {
-        // Using fetch with POST method to create a new student course
+        // Using POST method to create a new student-course relationship
         await fetch('/api/student-courses', {
           method: 'POST',
           headers: {
@@ -69,7 +69,7 @@ function StudentCoursesList() {
           body: JSON.stringify(formData),
         });
       }
-      fetchStudentCourses();
+      fetchStudentCourses(); // Refresh the list after saving
       setSelectedStudentCourse(null); // Reset after saving
     } catch (error) {
       console.error('Error saving student course:', error);
@@ -95,8 +95,8 @@ function StudentCoursesList() {
           {studentCourses.map((sc) => (
             <tr key={sc.id}>
               <td>{sc.id}</td>
-              <td>{sc.studentName}</td>
-              <td>{sc.courseName}</td>
+              <td>{sc.studentName}</td> {/* Displaying student name */}
+              <td>{sc.courseName}</td> {/* Displaying course name */}
               <td>
                 <button onClick={() => handleEdit(sc)}>Edit</button>
                 <button onClick={() => handleDelete(sc.id)}>Delete</button>
@@ -110,22 +110,33 @@ function StudentCoursesList() {
       <div className="student-course-form">
         <h2>{selectedStudentCourse && selectedStudentCourse.id ? 'Edit Student Course' : 'Add New Student Course'}</h2>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="studentName"
-            value={formData.studentName}
+          {/* Dropdowns for selecting student and course */}
+          <select
+            name="studentId"
+            value={formData.studentId}
             onChange={handleInputChange}
-            placeholder="Student's Name"
             required
-          />
-          <input
-            type="text"
-            name="courseName"
-            value={formData.courseName}
+          >
+            <option value="">Select Student</option>
+            {/* Replace with dynamically fetched student options */}
+            {/* Example: */}
+            <option value="1">John Doe</option>
+            <option value="2">Jane Smith</option>
+          </select>
+
+          <select
+            name="courseId"
+            value={formData.courseId}
             onChange={handleInputChange}
-            placeholder="Course Name"
             required
-          />
+          >
+            <option value="">Select Course</option>
+            {/* Replace with dynamically fetched course options */}
+            {/* Example: */}
+            <option value="1">Math 101</option>
+            <option value="2">Science 102</option>
+          </select>
+
           <button type="submit">Save</button>
           <button type="button" onClick={() => setSelectedStudentCourse(null)}>Cancel</button>
         </form>

@@ -2,13 +2,13 @@ import pool from '../Config/db.js';
 
 // Create a new course
 export const createCourse = async (req, res) => {
-    const { courseName, description, credits } = req.body;
+    const { courseName, departmentId } = req.body; // Credits removed as per updated schema
 
     try {
         const [result] = await pool.execute(`
-            INSERT INTO Courses (CourseName, Description, Credits)
-            VALUES (?, ?, ?)
-        `, [courseName, description, credits]);
+            INSERT INTO Courses (CourseName, DepartmentID)
+            VALUES (?, ?)
+        `, [courseName, departmentId]);
 
         res.status(201).json({ message: 'Course created successfully', courseId: result.insertId });
     } catch (error) {
@@ -20,7 +20,12 @@ export const createCourse = async (req, res) => {
 export const getAllCourses = async (req, res) => {
     try {
         const [rows] = await pool.execute(`
-            SELECT * FROM Courses
+            SELECT 
+                c.CourseID, 
+                c.CourseName, 
+                c.Description, 
+                c.Credits
+            FROM Courses c
         `);
 
         res.json(rows);
@@ -35,7 +40,14 @@ export const getCourseById = async (req, res) => {
 
     try {
         const [rows] = await pool.execute(`
-            SELECT * FROM Courses WHERE CourseID = ?
+            SELECT 
+                c.CourseID, 
+                c.CourseName, 
+                c.DepartmentID, 
+                d.DepartmentName
+            FROM Courses c
+            JOIN Departments d ON c.DepartmentID = d.DepartmentID
+            WHERE c.CourseID = ?
         `, [courseId]);
 
         if (rows.length === 0) {
@@ -51,14 +63,14 @@ export const getCourseById = async (req, res) => {
 // Update a course
 export const updateCourse = async (req, res) => {
     const { courseId } = req.params;
-    const { courseName, description, credits } = req.body;
+    const { courseName, departmentId } = req.body; // Credits removed as per updated schema
 
     try {
         const [result] = await pool.execute(`
             UPDATE Courses
-            SET CourseName = ?, Description = ?, Credits = ?
+            SET CourseName = ?, DepartmentID = ?
             WHERE CourseID = ?
-        `, [courseName, description, credits, courseId]);
+        `, [courseName, departmentId, courseId]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Course not found' });

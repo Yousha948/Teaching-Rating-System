@@ -1,85 +1,107 @@
 /* Student Courses Styles */
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #B03B3B; /* Deep red background */
-    color: #F8F8F8; /* Light text color */
-  }
-  
-  .student-courses-container {
-    padding: 20px;
-    background: #8B2C2C; /* Lighter red background for the container */
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    color: #F8F8F8; /* Light text color */
-    width: 50vw;
-  height: 40vw;
-  }
-  
-  .student-courses-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .student-courses-table th,
-  .student-courses-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #B03B3B; /* Dark red border */
-    color: #F8F8F8; /* Light text color */
-  }
-  
-  .student-courses-table th {
-    background: #B03B3B; /* Dark red background for the table header */
-    color: #FFD700; /* Gold color for header text */
-    font-weight: bold;
-  }
-  
-  .student-courses-table tr:nth-child(even) {
-    background-color: #A33B3B; /* Alternating row color with a lighter red */
-  }
-  
-  .student-courses-table tr:hover {
-    background-color: #944848; /* Slight hover effect with darker red */
-  }
-  
-  .student-course-form {
-    margin-top: 20px;
-    background: #8B2C2C; /* Lighter red background for the form */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    color: #F8F8F8; /* Light text color */
-  }
-  
-  .student-course-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .student-course-form input {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #B03B3B; /* Dark red border */
-    border-radius: 5px;
-    background-color: #FFD700; /* Gold background for input fields */
-    color: #000000; /* Dark text for readability */
-  }
-  
-  .student-course-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #FFA07A; /* Light coral background for button */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #FFFFFF; /* White text on buttons */
-    transition: background-color 0.3s;
-  }
-  
-  .student-course-form button:hover {
-    background-color: #FF6347; /* Darker coral for hover effect */
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-color: #B03B3B; /* Deep red background */
+  color: #F8F8F8; /* Light text color */
+}
+
+.student-courses-container {
+  padding: 20px;
+  background: #8B2C2C; /* Lighter red background for the container */
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #F8F8F8; /* Light text color */
+  width: 50vw;
+  height: auto; /* Adjusted to auto to avoid overflow */
+  max-width: 900px; /* Set a max width for better responsiveness */
+}
+
+.student-courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.student-courses-table th,
+.student-courses-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #B03B3B; /* Dark red border */
+  color: #F8F8F8; /* Light text color */
+}
+
+.student-courses-table th {
+  background: #B03B3B; /* Dark red background for the table header */
+  color: #FFD700; /* Gold color for header text */
+  font-weight: bold;
+}
+
+.student-courses-table tr:nth-child(even) {
+  background-color: #A33B3B; /* Alternating row color with a lighter red */
+}
+
+.student-courses-table tr:hover {
+  background-color: #944848; /* Slight hover effect with darker red */
+}
+
+.student-course-form {
+  margin-top: 20px;
+  background: #8B2C2C; /* Lighter red background for the form */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #F8F8F8; /* Light text color */
+}
+
+.student-course-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-course-form select,
+.student-course-form input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #B03B3B; /* Dark red border */
+  border-radius: 5px;
+  background-color: #FFD700; /* Gold background for input fields */
+  color: #000000; /* Dark text for readability */
+}
+
+.student-course-form button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #FFA07A; /* Light coral background for button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #FFFFFF; /* White text on buttons */
+  transition: background-color 0.3s;
+}
+
+.student-course-form button:hover {
+  background-color: #FF6347; /* Darker coral for hover effect */
+}
+
+.student-courses-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.student-courses-container button {
+  background-color: #6A5ACD; /* Medium Slate Blue for the Add New button */
+  padding: 10px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.student-courses-container button:hover {
+  background-color: #483D8B; /* Darker Slate Blue for hover effect */
+}

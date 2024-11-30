@@ -23,8 +23,8 @@ export const getAllStudents = async (req, res) => {
             SELECT 
                 s.StudentID, 
                 s.UserID, 
-                u.FirstName, 
-                u.LastName, 
+                CONCAT(u.FirstName, ' ', u.LastName) AS FullName,
+                u.Email,
                 s.DepartmentID, 
                 d.DepartmentName, 
                 s.Major, 
@@ -49,8 +49,8 @@ export const getStudentById = async (req, res) => {
             SELECT 
                 s.StudentID, 
                 s.UserID, 
-                u.FirstName, 
-                u.LastName, 
+                CONCAT(u.FirstName, ' ', u.LastName) AS FullName,
+                u.Email,
                 s.DepartmentID, 
                 d.DepartmentName, 
                 s.Major, 

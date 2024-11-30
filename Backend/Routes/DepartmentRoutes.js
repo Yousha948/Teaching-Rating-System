@@ -9,10 +9,19 @@ import {
 
 const router = express.Router();
 
-router.post('/', createDepartment);              // Create a new department
-router.get('/', getAllDepartments);              // Get all departments
-router.get('/:departmentId', getDepartmentById); // Get a specific department by ID
-router.put('/:departmentId', updateDepartment);  // Update a department
-router.delete('/:departmentId', deleteDepartment); // Delete a department
+// Create a new department
+router.post('/', createDepartment); // POST: /api/departments
+
+// Get all departments
+router.get('/', getAllDepartments); // GET: /api/departments
+
+// Get a department by ID
+router.get('/:departmentId', getDepartmentById); // GET: /api/departments/:departmentId
+
+// Update a department by ID
+router.put('/:departmentId', updateDepartment); // PUT: /api/departments/:departmentId
+
+// Delete a department by ID
+router.delete('/:departmentId', deleteDepartment); // DELETE: /api/departments/:departmentId
 
 export default router;

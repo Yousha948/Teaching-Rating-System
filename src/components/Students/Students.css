@@ -1,85 +1,142 @@
-/* Students Page Styles */
-
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #B03B3B; /* Deep red background */
-    color: #F8F8F8; /* Light text color for contrast */
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-color: #B03B3B; /* Deep red background */
+  color: #F8F8F8; /* Light text color for contrast */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Center vertically */
+}
+
+/* Container Styles */
+.students-container {
+  padding: 20px;
+  background: #8B2C2C; /* Lighter red background for the container */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  color: #F8F8F8; /* Light color for text */
+  width: 90%;
+  max-width: 800px;
+}
+
+/* Table Styles */
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.students-table th,
+.students-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #B03B3B; /* Dark red border */
+  color: #F8F8F8; /* Light text color */
+}
+
+.students-table th {
+  background: #B03B3B; /* Dark red background for the table header */
+  color: #FFD700; /* Gold color for header text */
+  font-weight: bold;
+}
+
+.students-table tr:nth-child(even) {
+  background-color: #A33B3B; /* Alternating row color with a lighter red */
+}
+
+.students-table tr:hover {
+  background-color: #944848; /* Slight hover effect with darker red */
+}
+
+.students-table button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #FFA07A; /* Light coral background for buttons */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #FFFFFF; /* White text on buttons */
+  transition: background-color 0.3s ease;
+}
+
+.students-table button:hover {
+  background-color: #FF6347; /* Darker coral for hover effect */
+}
+
+/* Form Styles */
+.student-form {
+  margin-top: 20px;
+  background: #8B2C2C; /* Lighter red background for the form */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #F8F8F8; /* Light color for text */
+}
+
+.student-form h2 {
+  margin-bottom: 10px;
+}
+
+.student-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-form input {
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #B03B3B; /* Dark red border */
+  border-radius: 5px;
+  background-color: #FFD700; /* Gold background for input fields */
+  color: #000000; /* Dark text for readability */
+  font-size: 1rem;
+}
+
+.student-form button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #FFA07A; /* Light coral background for buttons */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #FFFFFF; /* White text on buttons */
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.student-form button:hover {
+  background-color: #FF6347; /* Darker coral for hover effect */
+}
+
+.student-form button[type="button"] {
+  background-color: #B03B3B; /* Cancel button styled differently */
+}
+
+.student-form button[type="button"]:hover {
+  background-color: #944848; /* Hover effect for cancel button */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
   .students-container {
-    padding: 20px;
-    background: #8B2C2C; /* Lighter red background for the container */
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    color: #F8F8F8; /* Light color for text */
-    width: 50vw;
-  height: 40vw;
+    padding: 15px;
   }
-  
-  .students-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
+
   .students-table th,
   .students-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #B03B3B; /* Dark red border */
-    color: #F8F8F8; /* Light text color */
+    font-size: 0.9rem;
+    padding: 8px;
   }
-  
-  .students-table th {
-    background: #B03B3B; /* Dark red background for the table header */
-    color: #FFD700; /* Gold color for header text */
-    font-weight: bold;
-  }
-  
-  .students-table tr:nth-child(even) {
-    background-color: #A33B3B; /* Alternating row color with a lighter red */
-  }
-  
-  .students-table tr:hover {
-    background-color: #944848; /* Slight hover effect with darker red */
-  }
-  
-  .student-form {
-    margin-top: 20px;
-    background: #8B2C2C; /* Lighter red background for the form */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    color: #F8F8F8; /* Light color for text */
-  }
-  
-  .student-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
+
   .student-form input {
-    margin: 10px 0;
+    font-size: 0.9rem;
     padding: 10px;
-    border: 1px solid #B03B3B; /* Dark red border */
-    border-radius: 5px;
-    background-color: #FFD700; /* Gold background for input fields */
-    color: #000000; /* Dark text for readability */
   }
-  
+
   .student-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #FFA07A; /* Light coral background for button */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #FFFFFF; /* White text on buttons */
-    transition: background-color 0.3s;
+    font-size: 0.9rem;
   }
-  
-  .student-form button:hover {
-    background-color: #FF6347; /* Darker coral for hover effect */
-  }
-  
+}

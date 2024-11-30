@@ -9,10 +9,19 @@ import {
 
 const router = express.Router();
 
-router.post('/', createCourse);            // Create a new course
-router.get('/', getAllCourses);            // Get all courses
-router.get('/:courseId', getCourseById);   // Get a specific course by ID
-router.put('/:courseId', updateCourse);    // Update a course
-router.delete('/:courseId', deleteCourse); // Delete a course
+// Create a new course
+router.post('/', createCourse);
+
+// Retrieve all courses (includes department information)
+router.get('/', getAllCourses);
+
+// Retrieve a specific course by ID
+router.get('/:courseId', getCourseById);
+
+// Update an existing course by ID
+router.put('/:courseId', updateCourse);
+
+// Delete a specific course by ID
+router.delete('/:courseId', deleteCourse);
 
 export default router;

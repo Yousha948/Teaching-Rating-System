@@ -2,13 +2,16 @@ import pool from '../Config/db.js';
 
 // Create a new department
 export const createDepartment = async (req, res) => {
-    const { departmentName } = req.body;
+    const { departmentName } = req.body; // `departmentName` corresponds to `DepartmentName` in your database
 
     try {
-        const [result] = await pool.execute(`
+        const [result] = await pool.execute(
+            `
             INSERT INTO Departments (DepartmentName)
             VALUES (?)
-        `, [departmentName]);
+        `,
+            [departmentName]
+        );
 
         res.status(201).json({ message: 'Department created successfully', departmentId: result.insertId });
     } catch (error) {
@@ -19,11 +22,14 @@ export const createDepartment = async (req, res) => {
 // Get all departments
 export const getAllDepartments = async (req, res) => {
     try {
-        const [rows] = await pool.execute(`
-            SELECT * FROM Departments
-        `);
+        const [rows] = await pool.execute(
+            `
+            SELECT DepartmentID, DepartmentName 
+            FROM Departments
+        `
+        );
 
-        res.json(rows);
+        res.json(rows); // Returns an array of departments
     } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve departments', details: error.message });
     }
@@ -34,15 +40,20 @@ export const getDepartmentById = async (req, res) => {
     const { departmentId } = req.params;
 
     try {
-        const [rows] = await pool.execute(`
-            SELECT * FROM Departments WHERE DepartmentID = ?
-        `, [departmentId]);
+        const [rows] = await pool.execute(
+            `
+            SELECT DepartmentID, DepartmentName
+            FROM Departments
+            WHERE DepartmentID = ?
+        `,
+            [departmentId]
+        );
 
         if (rows.length === 0) {
             return res.status(404).json({ error: 'Department not found' });
         }
 
-        res.json(rows[0]);
+        res.json(rows[0]); // Return the department object
     } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve department', details: error.message });
     }
@@ -51,14 +62,17 @@ export const getDepartmentById = async (req, res) => {
 // Update a department
 export const updateDepartment = async (req, res) => {
     const { departmentId } = req.params;
-    const { departmentName } = req.body;
+    const { departmentName } = req.body; // Updating `DepartmentName`
 
     try {
-        const [result] = await pool.execute(`
+        const [result] = await pool.execute(
+            `
             UPDATE Departments
             SET DepartmentName = ?
             WHERE DepartmentID = ?
-        `, [departmentName, departmentId]);
+        `,
+            [departmentName, departmentId]
+        );
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Department not found' });
@@ -75,9 +89,13 @@ export const deleteDepartment = async (req, res) => {
     const { departmentId } = req.params;
 
     try {
-        const [result] = await pool.execute(`
-            DELETE FROM Departments WHERE DepartmentID = ?
-        `, [departmentId]);
+        const [result] = await pool.execute(
+            `
+            DELETE FROM Departments
+            WHERE DepartmentID = ?
+        `,
+            [departmentId]
+        );
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Department not found' });

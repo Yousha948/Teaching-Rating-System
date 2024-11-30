@@ -1,10 +1,8 @@
-/* Ratings Styles */
-
 /* General Body Styles */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #B03B3B; /* Deep red background */
-  color: #F8F8F8; /* Light text color for contrast */
+  background-color: #2C3E50; /* Navy blue background for better readability */
+  color: #ECF0F1; /* Light grey text for contrast */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,134 +11,150 @@ body {
 /* Container for Ratings Page */
 .ratings-container {
   padding: 20px;
-  background: #8B2C2C; /* Lighter red background for the container */
+  background: #34495E; /* Medium navy blue for container */
   margin-top: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  color: #F8F8F8; /* Light text color */
-  max-width: 800px; /* Constrain width for better alignment */
-  margin-left: auto; /* Center align the container */
-  margin-right: auto;
-  width: 50vw;
-  height: 40vw;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  color: #ECF0F1;
+  max-width: 900px;
+  margin: 20px auto; /* Center align the container */
+  text-align: center; /* Center align content */
+  width: 500vw;
+  height: 35vw;
+}
+
+/* Typography */
+.ratings-container h4 {
+  color: #E67E22; /* Orange color for headings */
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 /* Table for Ratings */
-.ratings-table {
+table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-.ratings-table th,
-.ratings-table td {
-  padding: 15px; /* Increased padding for better spacing */
+th,
+td {
+  padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #B03B3B; /* Dark red border */
-  color: #F8F8F8; /* Light text color */
-  font-size: 16px; /* Increased font size for readability */
+  border-bottom: 1px solid #7F8C8D; /* Grey border for rows */
+  font-size: 14px;
+  color: #ECF0F1; /* Light text */
 }
 
-.ratings-table th {
-  background: #B03B3B; /* Dark red background for the table header */
-  color: #FFD700; /* Gold color for header text */
+th {
+  background: #E67E22; /* Orange background for table header */
+  color: #2C3E50; /* Navy text for header */
   font-weight: bold;
   text-align: center; /* Center align header text */
 }
 
-.ratings-table tr:nth-child(even) {
-  background-color: #A33B3B; /* Alternating row color with a lighter red */
+tr:nth-child(even) {
+  background-color: #3A4B5C; /* Alternate row color with a darker shade */
 }
 
-.ratings-table tr:hover {
-  background-color: #944848; /* Slight hover effect with darker red */
+tr:hover {
+  background-color: #576F88; /* Slight hover effect with a blue tint */
+  cursor: pointer;
+}
+
+td {
+  position: relative; /* Prevent overlap by anchoring the content */
+}
+
+/* Dialog Styles */
+.dialog-container {
+  background-color: #34495E; /* Consistent with container color */
+  color: #ECF0F1;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 /* Form Container for Adding/Editing Ratings */
 .rating-form {
   margin-top: 20px;
-  background: #8B2C2C; /* Lighter red background for the form */
   padding: 25px;
+  background: #34495E; /* Medium navy blue for the form */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  color: #F8F8F8; /* Light color for text */
-  max-width: 600px; /* Constrain width for better form alignment */
-  margin-left: auto; /* Center align the form container */
-  margin-right: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: #ECF0F1;
+  max-width: 600px;
+  margin: 20px auto; /* Center align form */
+  z-index: 2; /* Ensure the form is always above other elements */
+  position: relative;
 }
 
-/* Form Element Styles */
-.rating-form form {
-  display: flex;
-  flex-direction: column;
-}
-
+/* Form Input Styles */
 .rating-form input,
 .rating-form select {
-  margin: 12px 0; /* Increased margin for better spacing */
+  margin: 10px 0;
   padding: 12px;
-  border: 1px solid #B03B3B; /* Dark red border */
-  border-radius: 5px;
-  background-color: #FFD700; /* Gold background for input fields */
-  color: #000000; /* Dark text for readability */
-  font-size: 16px; /* Increased font size for input fields */
+  border: 1px solid #7F8C8D; /* Grey border */
+  border-radius: 6px;
+  background-color: #ECF0F1; /* Light grey background for inputs */
+  color: #2C3E50; /* Navy text */
+  font-size: 14px;
+  z-index: 1; /* Prevent overlap during hover */
 }
 
-/* Button Styles */
-.rating-form button {
+/* Buttons */
+button {
   margin-top: 15px;
-  padding: 12px;
-  background-color: #FFA07A; /* Light coral background for button */
+  padding: 10px 20px;
+  background-color: #E67E22; /* Orange background for button */
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  color: #FFFFFF; /* White text on buttons */
-  font-size: 16px; /* Increased font size for buttons */
-  transition: background-color 0.3s, transform 0.2s; /* Added a subtle scale effect */
+  color: #ECF0F1; /* Light text */
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover Effect for Buttons */
-.rating-form button:hover {
-  background-color: #FF6347; /* Darker coral for hover effect */
-  transform: scale(1.05); /* Slight scale effect on hover */
+button:hover {
+  background-color: #D35400; /* Darker orange for hover effect */
+  transform: scale(1.03); /* Subtle zoom effect on hover */
 }
 
-/* Dialog Styles (if needed with MUI) */
-.dialog-container {
-  background-color: #8B2C2C; /* Lighter red for MUI dialog background */
-  color: #F8F8F8;
-  padding: 20px;
-  border-radius: 10px;
+/* Modal Buttons */
+.MuiButton-root {
+  margin: 10px 0;
 }
 
-/* Custom Scrollbar */
+/* Dropdown Styling */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%237F8C8D' d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 16px;
+  padding-right: 30px;
+}
+
+/* Hover Effects */
+table tr:hover td {
+  background-color: #576F88;
+  color: #FFF;
+}
+
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #8B2C2C; /* Scrollbar track in lighter red */
+  background: #2C3E50; /* Dark scrollbar track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #FFD700; /* Scrollbar thumb in gold */
+  background-color: #E67E22; /* Orange scrollbar thumb */
   border-radius: 10px;
 }
 
-/* Adjusted Typography for Consistency */
-h1, h2 {
-  color: #FFD700; /* Gold for headings */
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Additional Spacing for Form Elements */
+/* Text Fields for Material UI */
 .rating-form .MuiTextField-root {
   margin-bottom: 15px;
-}
-
-/* Button alignment if using MUI buttons */
-.MuiButton-root {
-  margin: 10px 0;
 }

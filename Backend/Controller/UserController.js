@@ -2,8 +2,6 @@ import pool from '../Config/db.js';
 import bcrypt from 'bcrypt'; // Import bcrypt for password hashing
 import jwt from 'jsonwebtoken'; // Optionally, you can use JWT for session management
 
-console.log('UserController is being loaded');
-
 // Register a new user
 export const registerUser = (req, res) => {
     const { firstName, lastName, birthday, gender, email, phoneNumber, id, role, password } = req.body; // Accept raw password here
@@ -29,11 +27,9 @@ export const registerUser = (req, res) => {
     });
 };
 
-
-
 // Get all users
 export const getAllUsers = (req, res) => {
-    const sql = 'SELECT * FROM Users';
+    const sql = 'SELECT UserID, FirstName, LastName, Email, Role FROM Users';  // Selecting relevant fields only
     pool.query(sql, (error, results) => {
         if (error) {
             return res.status(500).json({ error: 'Failed to retrieve users' });
@@ -58,8 +54,7 @@ export const deleteUser = (req, res) => {
 // Login user
 export const loginUser = (req, res) => {
     const { email, password } = req.body;
-
-    const sql = 'SELECT * FROM Users WHERE Email = ?';
+    const sql = 'SELECT UserID, FirstName, LastName, Email, Role, PasswordHash FROM Users WHERE Email = ?';
     pool.query(sql, [email], (error, results) => {
         if (error) {
             return res.status(500).json({ error: 'Database error during login' });

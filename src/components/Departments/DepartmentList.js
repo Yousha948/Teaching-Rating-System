@@ -5,16 +5,18 @@ function DepartmentsList() {
   const [departments, setDepartments] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [formData, setFormData] = useState({
-    name: '',
+    departmentName: '',
   });
 
   useEffect(() => {
-    fetchDepartments();
+    fetchDepartments(); // Fetch data when the component loads
   }, []);
 
+  // Fetch all departments from the backend
   const fetchDepartments = async () => {
     try {
-      const response = await fetch('/api/departments'); // Using fetch instead of axios
+      const response = await fetch('http://localhost:5000/api/departments'); // Ensure this matches your backend route
+      if (!response.ok) throw new Error('Failed to fetch departments');
       const data = await response.json();
       setDepartments(data);
     } catch (error) {
@@ -22,53 +24,61 @@ function DepartmentsList() {
     }
   };
 
+  // Handle editing a department
   const handleEdit = (department) => {
     setSelectedDepartment(department);
     setFormData({
-      name: department.name,
+      departmentName: department.DepartmentName, // Ensure the field matches your database
     });
   };
 
+  // Handle deleting a department
   const handleDelete = async (id) => {
     try {
-      await fetch(`/api/departments/${id}`, {
-        method: 'DELETE', // Using DELETE method
+      const response = await fetch(`/api/departments/${id}`, {
+        method: 'DELETE',
       });
-      fetchDepartments(); // Re-fetch the list after deletion
+      if (!response.ok) throw new Error('Failed to delete department');
+      fetchDepartments(); // Refresh the department list
     } catch (error) {
       console.error('Error deleting department:', error);
     }
   };
 
+  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle form submission (Create or Update)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (selectedDepartment && selectedDepartment.id) {
-        // Using fetch with PUT method to update a department
-        await fetch(`/api/departments/${selectedDepartment.id}`, {
+      if (selectedDepartment && selectedDepartment.DepartmentID) {
+        // Update an existing department
+        const response = await fetch(`/api/departments/${selectedDepartment.DepartmentID}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(formData),
         });
+        if (!response.ok) throw new Error('Failed to update department');
       } else {
-        // Using fetch with POST method to create a new department
-        await fetch('/api/departments', {
+        // Create a new department
+        const response = await fetch('/api/departments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(formData),
         });
+        if (!response.ok) throw new Error('Failed to create department');
       }
-      fetchDepartments();
-      setSelectedDepartment(null); // Reset after saving
+      fetchDepartments(); // Refresh the department list
+      setSelectedDepartment(null);
+      setFormData({ departmentName: '' }); // Reset the form
     } catch (error) {
       console.error('Error saving department:', error);
     }
@@ -90,12 +100,12 @@ function DepartmentsList() {
         </thead>
         <tbody>
           {departments.map((department) => (
-            <tr key={department.id}>
-              <td>{department.id}</td>
-              <td>{department.name}</td>
+            <tr key={department.DepartmentID}>
+              <td>{department.DepartmentID}</td>
+              <td>{department.DepartmentName}</td>
               <td>
                 <button onClick={() => handleEdit(department)}>Edit</button>
-                <button onClick={() => handleDelete(department.id)}>Delete</button>
+                <button onClick={() => handleDelete(department.DepartmentID)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -103,21 +113,25 @@ function DepartmentsList() {
       </table>
 
       {/* Form for adding/editing departments */}
-      <div className="department-form">
-        <h2>{selectedDepartment && selectedDepartment.id ? 'Edit Department' : 'Add New Department'}</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Department Name"
-            required
-          />
-          <button type="submit">Save</button>
-          <button type="button" onClick={() => setSelectedDepartment(null)}>Cancel</button>
-        </form>
-      </div>
+      {selectedDepartment && (
+        <div className="department-form">
+          <h2>{selectedDepartment.DepartmentID ? 'Edit Department' : 'Add New Department'}</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="departmentName"
+              value={formData.departmentName}
+              onChange={handleInputChange}
+              placeholder="Department Name"
+              required
+            />
+            <button type="submit">Save</button>
+            <button type="button" onClick={() => setSelectedDepartment(null)}>
+              Cancel
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

@@ -156,7 +156,9 @@ body {
 .login-options a:hover {
   text-decoration: underline;
 }
-
+.error-message{
+  color: red !important;
+}
 /* Keyframes for Animations */
 @keyframes wawes {
   from {

@@ -22,19 +22,23 @@ function RatingsList() {
   const [ratings, setRatings] = useState([]);
   const [selectedRating, setSelectedRating] = useState(null);
   const [formData, setFormData] = useState({
-    courseName: '',
-    teacherName: '',
-    ratingValue: '',
+    CourseID: '',
+    TeacherID: '',
+    RatingValue: '',
   });
+  const [courses, setCourses] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchRatings();
+    fetchCourses();
+    fetchTeachers();
   }, []);
 
   const fetchRatings = async () => {
     try {
-      const response = await fetch('/api/ratings'); // Using fetch instead of axios
+      const response = await fetch('/api/ratings');
       const data = await response.json();
       setRatings(data);
     } catch (error) {
@@ -42,19 +46,39 @@ function RatingsList() {
     }
   };
 
+  const fetchCourses = async () => {
+    try {
+      const response = await fetch('/api/courses');
+      const data = await response.json();
+      setCourses(data);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    }
+  };
+
+  const fetchTeachers = async () => {
+    try {
+      const response = await fetch('/api/teachers/list');
+      const data = await response.json();
+      setTeachers(data);
+    } catch (error) {
+      console.error('Error fetching teachers:', error);
+    }
+  };
+
   const handleEdit = (rating) => {
     setSelectedRating(rating);
     setFormData({
-      courseName: rating.courseName,
-      teacherName: rating.teacherName,
-      ratingValue: rating.ratingValue,
+      CourseID: rating.CourseID,
+      TeacherID: rating.TeacherID,
+      RatingValue: rating.RatingValue,
     });
     setOpen(true);
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (ratingId) => {
     try {
-      await fetch(`/api/ratings/${id}`, {
+      await fetch(`/api/ratings/${ratingId}`, {
         method: 'DELETE',
       });
       fetchRatings();
@@ -71,9 +95,9 @@ function RatingsList() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (selectedRating && selectedRating.id) {
+      if (selectedRating && selectedRating.RatingID) {
         // Update existing rating
-        await fetch(`/api/ratings/${selectedRating.id}`, {
+        await fetch(`/api/ratings/${selectedRating.RatingID}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -99,7 +123,7 @@ function RatingsList() {
 
   const handleOpen = () => {
     setSelectedRating(null);
-    setFormData({ courseName: '', teacherName: '', ratingValue: '' });
+    setFormData({ CourseID: '', TeacherID: '', RatingValue: '' });
     setOpen(true);
   };
 
@@ -129,11 +153,11 @@ function RatingsList() {
           </TableHead>
           <TableBody>
             {ratings.map((rating) => (
-              <TableRow key={rating.id}>
-                <TableCell>{rating.id}</TableCell>
-                <TableCell>{rating.courseName}</TableCell>
-                <TableCell>{rating.teacherName}</TableCell>
-                <TableCell>{rating.ratingValue}</TableCell>
+              <TableRow key={rating.RatingID}>
+                <TableCell>{rating.RatingID}</TableCell>
+                <TableCell>{rating.CourseName}</TableCell>
+                <TableCell>{rating.TeacherName}</TableCell>
+                <TableCell>{rating.RatingValue}</TableCell>
                 <TableCell>
                   <Button
                     variant="outlined"
@@ -146,7 +170,7 @@ function RatingsList() {
                   <Button
                     variant="outlined"
                     color="secondary"
-                    onClick={() => handleDelete(rating.id)}
+                    onClick={() => handleDelete(rating.RatingID)}
                   >
                     Delete
                   </Button>
@@ -164,34 +188,54 @@ function RatingsList() {
           <form onSubmit={handleSubmit}>
             <TextField
               margin="dense"
-              label="Course Name"
-              type="text"
+              select
+              label="Course"
               fullWidth
               variant="outlined"
-              name="courseName"
-              value={formData.courseName}
+              name="CourseID"
+              value={formData.CourseID}
               onChange={handleInputChange}
               required
-            />
+              SelectProps={{
+                native: true,
+              }}
+            >
+              <option value=""></option>
+              {courses.map((course) => (
+                <option key={course.CourseID} value={course.CourseID}>
+                  {course.CourseName}
+                </option>
+              ))}
+            </TextField>
             <TextField
               margin="dense"
-              label="Teacher Name"
-              type="text"
+              select
+              label="Teacher"
               fullWidth
               variant="outlined"
-              name="teacherName"
-              value={formData.teacherName}
+              name="TeacherID"
+              value={formData.TeacherID}
               onChange={handleInputChange}
               required
-            />
+              SelectProps={{
+                native: true,
+              }}
+            >
+              <option value=""></option>
+              {teachers.map((teacher) => (
+                <option key={teacher.TeacherID} value={teacher.TeacherID}>
+                  {teacher.FirstName} {teacher.LastName}
+                </option>
+              ))}
+            </TextField>
             <TextField
               margin="dense"
-              label="Rating (1-5)"
+              label="Rating (1-10)"
               type="number"
               fullWidth
               variant="outlined"
-              name="ratingValue"
-              value={formData.ratingValue}
+              name="RatingValue"
+              value={formData.RatingValue}
               onChange={handleInputChange}
               required
               inputProps={{ min: 1, max: 5 }}

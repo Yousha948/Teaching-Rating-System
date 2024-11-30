@@ -3,20 +3,22 @@ import './Teacher.css';
 
 function Teachers() {
   const [teachers, setTeachers] = useState([]);
+  const [departments, setDepartments] = useState([]);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    department: '',
+    UserID: '',
+    DepartmentID: '',
+    Specialty: '',
   });
 
   useEffect(() => {
     fetchTeachers();
+    fetchDepartments();
   }, []);
 
   const fetchTeachers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/teachers/createTeacher'); // Using fetch instead of axios
+      const response = await fetch('http://localhost:5000/api/teachers');
       const data = await response.json();
       setTeachers(data);
     } catch (error) {
@@ -24,18 +26,28 @@ function Teachers() {
     }
   };
 
+  const fetchDepartments = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/departments');
+      const data = await response.json();
+      setDepartments(data);
+    } catch (error) {
+      console.error('Error fetching departments:', error);
+    }
+  };
+
   const handleEdit = (teacher) => {
     setSelectedTeacher(teacher);
     setFormData({
-      name: teacher.name,
-      email: teacher.email,
-      department: teacher.department,
+      UserID: teacher.UserID,
+      DepartmentID: teacher.DepartmentID,
+      Specialty: teacher.Specialty,
     });
   };
 
-  const handleDelete = async (teacherId) => {
+  const handleDelete = async (TeacherID) => {
     try {
-      await fetch(`/api/teachers/${teacherId}`, {
+      await fetch(`http://localhost:5000/api/teachers/${TeacherID}`, {
         method: 'DELETE',
       });
       fetchTeachers();
@@ -52,9 +64,9 @@ function Teachers() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (selectedTeacher && selectedTeacher.id) {
-        // Using fetch with PUT method to update a teacher
-        await fetch(`/api/teachers/${selectedTeacher.id}`, {
+      if (selectedTeacher && selectedTeacher.TeacherID) {
+        // Update teacher
+        await fetch(`http://localhost:5000/api/teachers/${selectedTeacher.TeacherID}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -62,8 +74,8 @@ function Teachers() {
           body: JSON.stringify(formData),
         });
       } else {
-        // Using fetch with POST method to create a new teacher
-        await fetch('/api/teachers', {
+        // Create new teacher
+        await fetch('http://localhost:5000/api/teachers', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -72,7 +84,7 @@ function Teachers() {
         });
       }
       fetchTeachers();
-      setSelectedTeacher(null); // Reset the selected teacher after saving
+      setSelectedTeacher(null); // Reset the selected teacher
     } catch (error) {
       console.error('Error saving teacher:', error);
     }
@@ -85,57 +97,71 @@ function Teachers() {
       <table className="teachers-table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
+            <th>TeacherID</th>
+            <th>UserID</th>
             <th>Department</th>
+            <th>Specialty</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {teachers.map((teacher) => (
-            <tr key={teacher.TeacherId}>
-              <td>{teacher.TeacherId}</td>
-              <td>{teacher.name}</td>
-              <td>{teacher.email}</td>
-              <td>{teacher.department}</td>
+            <tr key={teacher.TeacherID}>
+              <td>{teacher.TeacherID}</td>
+              <td>{teacher.UserID}</td>
+              <td>{teacher.DepartmentName}</td>
+              <td>{teacher.Specialty}</td>
               <td>
                 <button onClick={() => handleEdit(teacher)}>Edit</button>
-                <button onClick={() => handleDelete(teacher.id)}>Delete</button>
+                <button onClick={() => handleDelete(teacher.TeacherID)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Teacher Form for adding or editing */}
+      {/* Teacher Form */}
       <div className="teacher-form">
-        <h2>{selectedTeacher && selectedTeacher.id ? 'Edit Teacher' : 'Add New Teacher'}</h2>
+        <h2>{selectedTeacher && selectedTeacher.TeacherID ? 'Edit Teacher' : 'Add New Teacher'}</h2>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Teacher's Name"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="Teacher's Email"
-            required
-          />
-          <input
-            type="text"
-            name="department"
-            value={formData.department}
-            onChange={handleInputChange}
-            placeholder="Department"
-            required
-          />
+          <label>
+            User ID:
+            <input
+              type="text"
+              name="UserID"
+              value={formData.UserID}
+              onChange={handleInputChange}
+              placeholder="Enter User ID"
+              required
+            />
+          </label>
+          <label>
+            Department:
+            <select
+              name="DepartmentID"
+              value={formData.DepartmentID}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="">Select Department</option>
+              {departments.map((dept) => (
+                <option key={dept.DepartmentID} value={dept.DepartmentID}>
+                  {dept.DepartmentName}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Specialty:
+            <input
+              type="text"
+              name="Specialty"
+              value={formData.Specialty}
+              onChange={handleInputChange}
+              placeholder="Enter Specialty"
+              required
+            />
+          </label>
           <button type="submit">Save</button>
           <button type="button" onClick={() => setSelectedTeacher(null)}>Cancel</button>
         </form>

@@ -9,10 +9,19 @@ import {
 
 const router = express.Router();
 
-router.post('/', createTeacher);            // Create a new teacher
-router.get('/', getAllTeachers);            // Get all teachers
-router.get('/:teacherId', getTeacherById);  // Get a specific teacher by ID
-router.put('/:teacherId', updateTeacher);   // Update a teacher
-router.delete('/:teacherId', deleteTeacher); // Delete a teacher
+// Route to create a new teacher
+router.post('/create', createTeacher);            
+
+// Route to get all teachers
+router.get('/list', getAllTeachers);              
+
+// Route to get a specific teacher by ID
+router.get('/:TeacherID', getTeacherById);        
+
+// Route to update a specific teacher
+router.put('/:TeacherID', updateTeacher);        
+
+// Route to delete a specific teacher
+router.delete('/:TeacherID', deleteTeacher);     
 
 export default router;

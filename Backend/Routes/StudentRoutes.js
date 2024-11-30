@@ -9,10 +9,23 @@ import {
 
 const router = express.Router();
 
-router.post('/', createStudent);            // Create a new student
-router.get('/', getAllStudents);            // Get all students
-router.get('/:studentId', getStudentById);  // Get a specific student by ID
-router.put('/:studentId', updateStudent);   // Update a student
-router.delete('/:studentId', deleteStudent); // Delete a student
+// Route to create a new student
+// Expects: { userId, departmentId, major, yearOfStudy } in the request body
+router.post('/', createStudent);
+
+// Route to retrieve all students
+// Returns: Enriched student data including FullName, Email, DepartmentName
+router.get('/', getAllStudents);
+
+// Route to retrieve a specific student by ID
+// Returns: Enriched data for the student with given StudentID
+router.get('/:studentId', getStudentById);
+
+// Route to update a student's details
+// Expects: { departmentId, major, yearOfStudy } in the request body
+router.put('/:studentId', updateStudent);
+
+// Route to delete a student by ID
+router.delete('/:studentId', deleteStudent);
 
 export default router;

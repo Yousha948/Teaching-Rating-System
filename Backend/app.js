@@ -1,5 +1,4 @@
 import express from 'express';
-import db from './Config/db.js'
 import cors from 'cors'
 import UserRoutes from './Routes/UserRoutes.js'
 import TeacherRoutes from './Routes/TeacherRoutes.js'
@@ -13,6 +12,13 @@ const PORT = 5000;
 // Middleware
 app.use(express.json());
 app.use(cors())
+
+// Global Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack); // Logs the error stack in the console
+  res.status(500).json({ error: 'Something went wrong!' });
+});
+
 
 // Routes
 app.use('/api/users', UserRoutes);

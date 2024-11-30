@@ -5,8 +5,8 @@ function CourseTeachersList() {
   const [courseTeachers, setCourseTeachers] = useState([]);
   const [selectedCourseTeacher, setSelectedCourseTeacher] = useState(null);
   const [formData, setFormData] = useState({
-    courseName: '',
-    teacherName: '',
+    courseId: '',
+    teacherId: '',
   });
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function CourseTeachersList() {
 
   const fetchCourseTeachers = async () => {
     try {
-      const response = await fetch('/api/course-teachers'); // Using fetch instead of axios
+      const response = await fetch('/api/course-teachers'); // Fetch all course-teacher relationships
       const data = await response.json();
       setCourseTeachers(data);
     } catch (error) {
@@ -26,15 +26,15 @@ function CourseTeachersList() {
   const handleEdit = (courseTeacher) => {
     setSelectedCourseTeacher(courseTeacher);
     setFormData({
-      courseName: courseTeacher.courseName,
-      teacherName: courseTeacher.teacherName,
+      courseId: courseTeacher.courseId,
+      teacherId: courseTeacher.teacherId,
     });
   };
 
   const handleDelete = async (id) => {
     try {
       await fetch(`/api/course-teachers/${id}`, {
-        method: 'DELETE', // Using DELETE method
+        method: 'DELETE', // DELETE method
       });
       fetchCourseTeachers(); // Re-fetch the list after deletion
     } catch (error) {
@@ -51,7 +51,7 @@ function CourseTeachersList() {
     e.preventDefault();
     try {
       if (selectedCourseTeacher && selectedCourseTeacher.id) {
-        // Using fetch with PUT method to update a course-teacher relationship
+        // PUT request to update course-teacher relationship
         await fetch(`/api/course-teachers/${selectedCourseTeacher.id}`, {
           method: 'PUT',
           headers: {
@@ -60,7 +60,7 @@ function CourseTeachersList() {
           body: JSON.stringify(formData),
         });
       } else {
-        // Using fetch with POST method to create a new course-teacher relationship
+        // POST request to create a new course-teacher relationship
         await fetch('/api/course-teachers', {
           method: 'POST',
           headers: {
@@ -110,22 +110,28 @@ function CourseTeachersList() {
       <div className="course-teacher-form">
         <h2>{selectedCourseTeacher && selectedCourseTeacher.id ? 'Edit Course-Teacher' : 'Add New Course-Teacher'}</h2>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="courseName"
-            value={formData.courseName}
+          <select
+            name="courseId"
+            value={formData.courseId}
             onChange={handleInputChange}
-            placeholder="Course Name"
             required
-          />
-          <input
-            type="text"
-            name="teacherName"
-            value={formData.teacherName}
+          >
+            <option value="">Select Course</option>
+            {/* Assuming the courses are available in a list */}
+            {/* Add logic to fetch and display courses */}
+          </select>
+
+          <select
+            name="teacherId"
+            value={formData.teacherId}
             onChange={handleInputChange}
-            placeholder="Teacher Name"
             required
-          />
+          >
+            <option value="">Select Teacher</option>
+            {/* Assuming the teachers are available in a list */}
+            {/* Add logic to fetch and display teachers */}
+          </select>
+
           <button type="submit">Save</button>
           <button type="button" onClick={() => setSelectedCourseTeacher(null)}>Cancel</button>
         </form>

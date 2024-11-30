@@ -1,85 +1,118 @@
-/* Departments Page Styles */
-
+/* General Page Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #B03B3B; /* Deep red background */
-    color: #F8F8F8; /* Light text color for contrast */
-  }
-  
-  .departments-container {
-    padding: 20px;
-    background: #8B2C2C; /* Lighter red background for the container */
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    color: #F8F8F8; /* Light text color */
-    width: 50vw;
-  height: 40vw;
-  }
-  
-  .departments-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .departments-table th,
-  .departments-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #B03B3B; /* Dark red border */
-    color: #F8F8F8; /* Light text color */
-  }
-  
-  .departments-table th {
-    background: #B03B3B; /* Dark red background for the table header */
-    color: #FFD700; /* Gold color for header text */
-    font-weight: bold;
-  }
-  
-  .departments-table tr:nth-child(even) {
-    background-color: #A33B3B; /* Alternating row color with a lighter red */
-  }
-  
-  .departments-table tr:hover {
-    background-color: #944848; /* Slight hover effect with darker red */
-  }
-  
-  .department-form {
-    margin-top: 20px;
-    background: #8B2C2C; /* Lighter red background for the form */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    color: #F8F8F8; /* Light text color */
-  }
-  
-  .department-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .department-form input {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #B03B3B; /* Dark red border */
-    border-radius: 5px;
-    background-color: #FFD700; /* Gold background for input fields */
-    color: #000000; /* Dark text for readability */
-  }
-  
-  .department-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #FFA07A; /* Light coral background for button */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #FFFFFF; /* White text on buttons */
-    transition: background-color 0.3s;
-  }
-  
-  .department-form button:hover {
-    background-color: #FF6347; /* Darker coral for hover effect */
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-color: #B03B3B; /* Deep red background */
+  color: #F8F8F8; /* Light text color for contrast */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Center the content vertically */
+}
+
+/* Main Container */
+.departments-container {
+  padding: 20px;
+  background: #8B2C2C; /* Lighter red background for the container */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #F8F8F8; /* Light text color */
+  width: 60vw;
+  max-height: 80vh;
+  overflow-y: auto; /* Scroll if content overflows */
+}
+
+/* Table Styling */
+.departments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.departments-table th,
+.departments-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #B03B3B; /* Dark red border */
+  color: #F8F8F8; /* Light text color */
+}
+
+.departments-table th {
+  background: #B03B3B; /* Dark red background for the table header */
+  color: #FFD700; /* Gold color for header text */
+  font-weight: bold;
+}
+
+.departments-table tr:nth-child(even) {
+  background-color: #A33B3B; /* Alternating row color with a lighter red */
+}
+
+.departments-table tr:hover {
+  background-color: #944848; /* Slight hover effect with darker red */
+}
+
+/* Add/Edit Button */
+.departments-container button {
+  background-color: #FFA07A; /* Light coral background for button */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #FFFFFF; /* White text */
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.departments-container button:hover {
+  background-color: #FF6347; /* Darker coral for hover effect */
+}
+
+/* Form Styling */
+.department-form {
+  margin-top: 20px;
+  background: #8B2C2C; /* Lighter red background for the form */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #F8F8F8; /* Light text color */
+}
+
+.department-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.department-form input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #B03B3B; /* Dark red border */
+  border-radius: 5px;
+  background-color: #FFD700; /* Gold background for input fields */
+  color: #000000; /* Dark text for readability */
+}
+
+.department-form button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #FFA07A; /* Light coral background for button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #FFFFFF; /* White text on buttons */
+  transition: background-color 0.3s;
+}
+
+.department-form button:hover {
+  background-color: #FF6347; /* Darker coral for hover effect */
+}
+
+/* Cancel Button */
+.department-form button[type='button'] {
+  background-color: #B03B3B; /* Dark red for cancel button */
+}
+
+.department-form button[type='button']:hover {
+  background-color: #8B0000; /* Darker red for hover effect on cancel */
+}
